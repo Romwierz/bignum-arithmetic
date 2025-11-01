@@ -17,6 +17,9 @@ $(APP): $(OBJ)
 asan:
 	$(MAKE) CFLAGS="$(CFLAGS) -fsanitize=address -fno-omit-frame-pointer"
  
+test:
+	python3 -m python.main
+
 clean:
 	rm -f $(APP) $(OBJ) $(DEP)
 
