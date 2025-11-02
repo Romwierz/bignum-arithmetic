@@ -40,6 +40,10 @@ def div_bignum(a, b):
         shift_left_1(remainder)
         remainder[0] |= get_bit(a, bit)
         if compare(remainder, b) >= 0:
-            subtract(remainder, b)
+            remainder, _ = sub_bignum(remainder, b)
             set_bit(quotient, bit)
     return quotient, remainder
+
+def mod_bignum(a, m):
+    _, x = div_bignum(a, m)
+    return x
