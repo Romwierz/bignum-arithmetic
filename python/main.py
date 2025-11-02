@@ -1,5 +1,6 @@
 from .bignum import *
-from .bignum import print_num
+from .utils import print_num
+from .montgomery import *
 
 def test_add8():
     a = 255 
@@ -72,25 +73,36 @@ def test_div_bignum():
     print_num(remainder)
     print("")
 
+def test_mod_bignum():
+    a = [0x04, 0xff]
+    b = [0x03, 0xf0]
+
+    print_num(a)
+    print(" mod", end=" ")
+    print_num(b)
+    print(" =", end=" ")
+
+    mod = mod_bignum(a, b)
+    print_num(mod)
+    print("")
+
 def main():
     print("Hello there!")
+    a = 235147
+    b = 11034
+    m = 14567
+
+    print(a, end="")
+    print(" *", end=" ")
+    print(b, end="")
+    print(" mod", end=" ")
+    print(m, end=" ")
+
+    _a = montgomery_convert_in(a, m)
+    _b = montgomery_convert_in(b, m)
+    _x = mul_montgomery(_a, _b, m)
+    x = montgomery_convert_out(_x, m)
+    print("=", x)
 
 if __name__=="__main__":
     main()
-    # test_add_bignum()
-    # test_mul_bignum()
-    test_sub_bignum()
-    test_div_bignum()
-    quit()
-    a = 2
-    b = 5
-    m = 7
-    n_bits = 3
-
-    _a = montgomery_convert_in(a, m, n_bits)
-    _b = montgomery_convert_in(b, m, n_bits)
-    _x = mul_montgomery(_a, _b, m, n_bits)
-    print(_x)
-    montgomery_convert_out(_x, m, n_bits)
-
-

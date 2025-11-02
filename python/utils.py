@@ -30,6 +30,13 @@ def set_bit(a, bit_index):
     bit_i  = bit_index % 8
     a[byte_i] |= (1 << bit_i)
 
+def get_bits_cnt(x):
+    cnt = 0
+    while x > 0:
+        cnt += 1
+        x >>= 1
+    return cnt
+
 def subtract(a, b):
     borrow = 0
     for i in range(len(a)):
